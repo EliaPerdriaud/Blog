@@ -1,0 +1,48 @@
+{% extends 'admin/base.html.twig'%}
+
+{% block body %}
+
+<div class="container border my-3 shadow p-3 mb-5 rounded bg-dark text-white text-center">
+    <h2>{{ post.title }}</h2>
+
+    <i>{{ post.description }}</i>
+    <br>
+    <br>
+    {{ post.content |nl2br}}
+    <br>
+    <br>
+    <B>Slug :</B>
+    {{ post.slug }}
+    <br>
+    <br>
+    <B>Date de création :</B>
+    {{ post.createdAt | date('d/m/Y à H:i') }}
+    <br>
+    <br>
+    <B>Date de mise à jour :</B>
+    {{ post.updatedAt | date('d/m/Y à H:i') }}
+    <br>
+    <br>
+    <B>Date de publication :</B>
+    {{ post.publishedAt | date('d/m/Y à H:i') }}
+    <br>
+    <br>
+    <B>Catégorie :</B>
+    {% for category in post.categories %}
+        {{category.name}}
+    {% endfor %}
+    <br>
+    <br>
+    <B>Commentaires :</B>
+    <br>
+    {% for comment in post.comments %}
+    <a href= "http://symfony.iut/admin/comment/{{comment.id}}" class="text-warning mx-2"> 
+        <br>
+        -{{comment.username}}
+        <br>
+        {{comment.content}}
+        <br>
+    {% endfor %}
+    </a>
+</div>
+{% endblock %}

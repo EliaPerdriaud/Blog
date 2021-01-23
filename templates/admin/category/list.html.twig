@@ -1,0 +1,17 @@
+{% extends 'admin/base.html.twig'%}
+
+{% block body %}
+    {% for category in categories %}
+    <div class="container border my-3 shadow p-3 mb-5 rounded bg-dark text-white text-center">
+        Id de la catégorie :
+        {{ category.id }}
+        <br>
+        Nom de la catégorie :
+        {{ category.name }}
+        <br>
+        <a href="http://symfony.iut/admin/category/{{category.id}}/remove"class="text-warning mx-2">Supprimer</a>
+        <a href="http://symfony.iut/admin/category/{{category.id}}/edit"class="text-warning mx-2">Edit</a>
+        <a href="http://symfony.iut/admin/category/{{category.id}}/show"class="text-warning mx-2">Voir</a>
+    </div>
+    {% endfor %}
+{% endblock %}

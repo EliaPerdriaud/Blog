@@ -1,0 +1,32 @@
+{% extends 'admin/base.html.twig'%}
+
+{% block body %}
+    {% for post in posts %}
+    <div class="container border my-3 shadow p-3 mb-5 rounded bg-dark text-white text-center">
+        <h2>{{ post.title }}</h2>
+
+        <i>{{ post.description }}</i>
+        <br>
+        <br>
+        {{ post.content |nl2br| u.truncate(300,'.....') }}
+        <br>
+        <br>
+        <B>Date de publication :</B>
+        {{ post.publishedAt | date('d/m/Y à H:i') }}
+        <br>
+        <br>
+        <B>Catégorie :</B>
+        {% for category in post.categories %}
+            {{category.name}}
+        {% endfor %}
+        <br>
+        <br>
+        <a href="http://symfony.iut/admin/post/{{post.slug}}"class="text-warning mx-2">Voir le post </a>
+        <a href="http://symfony.iut/admin/post/{{post.id}}/remove"class="text-warning mx-2">Supprimer</a>
+        <a href="http://symfony.iut/admin/post/{{post.id}}/edit"class="text-warning mx-2">Edit</a>
+        <br>
+        <br>
+    </div>
+        <br>
+    {% endfor %}
+{% endblock %}

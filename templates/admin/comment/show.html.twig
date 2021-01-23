@@ -1,0 +1,27 @@
+{% extends "admin/base.html.twig" %}
+
+{% block body %}
+    <div class="container border my-3 shadow p-3 mb-5 rounded bg-dark text-white text-center">
+
+    <h2>{{comment.username}}</h2>
+    <i><a href= "http://symfony.iut/admin/post/{{post.slug}}" class="text-warning mx-2"> {{comment.post}}</a></i>
+    <br>
+    <br>
+    {{comment.content}}
+    <br>
+    <br>
+    Validité du commentaire :
+    {% if comment.valid %}
+        oui
+    {% else %}
+        non
+    {% endif %}
+    
+    <br>
+
+    Date de création :
+    {{ comment.createdAt | date('d/m/Y à H:i') }}
+    <br>
+
+
+{% endblock %}

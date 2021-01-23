@@ -1,0 +1,24 @@
+<div class="container border my-3 shadow p-3 mb-5 rounded bg-white text-dark text-center">
+    <h5> 5 derniers commentaires : </h5>
+    <ul>
+        {% for comment in comments %}
+         <a href= "http://symfony.iut/admin/comment/{{comment.id}}" class="text-warning mx-2"> 
+        <li><B>{{comment.username}}</B>
+            <br>
+            </a>
+            {{comment.content | u.truncate(100,'...')}}
+            <br>
+        </li>
+        <br>
+        {% endfor %}
+    <h5>Catégories</h5>
+    {% for category in categories %} 
+        <li>{% set count = category.posts.count %}
+        {% if count > 0 %}
+            <a href= "http://symfony.iut/category/{{category.id}}/show" class="text-warning mx-2"> {{category.name}} ({{count}})</a>
+        {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+

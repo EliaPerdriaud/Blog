@@ -1,0 +1,40 @@
+{% extends 'admin/base.html.twig'%}
+
+{% block body %}
+    {% for comment in comments %}
+    <div class="container border my-3 shadow p-3 mb-5 rounded bg-dark text-white text-center">
+    
+    <h2>{{comment.username}}</h2>
+    <i>{{comment.post}}</i>
+    <br>
+    <br>
+    {{comment.content}}
+    <br>
+    <br>
+    Validité du commentaire :
+    {% if comment.valid %}
+        oui
+    {% else %}
+        non
+    {% endif %}
+    
+    <br>
+
+    Date de création :
+    {{ comment.createdAt | date('d/m/Y à H:i') }}
+    <br>
+
+    
+
+    <br>
+    <br>
+    <a href="http://symfony.iut/admin/comment/{{comment.id}}"class="text-warning mx-2">Voir le commentaire </a>
+    <a href="http://symfony.iut/admin/comment/{{comment.id}}/remove"class="text-warning mx-2">Supprimer</a>
+    {% if comment.valid==false %}
+        <a href="http://symfony.iut/admin/comment/{{comment.id}}/validate"class="text-warning mx-2">Valider</a>
+    {% endif %}
+    <br>
+    </div>
+
+    {% endfor %}
+{% endblock %}
